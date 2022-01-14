@@ -1,0 +1,8 @@
+[DEFAULT]
+client_id = your_client_id
+client_secret = your_client_secret
+token_path = .
+token_file = access_token.json
+site_collection_id = GUID_of_site_collection
+site_id = GUID_of_target_site
+list_id = GUID_of_target_list
