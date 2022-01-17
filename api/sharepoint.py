@@ -24,11 +24,16 @@ def get_list_records():
     # サイトの取得
     site = \
         sharepoint.get_site('root', config.site_collection_id, config.site_id)
-    # リストを取得
-    target_list = site.get_list_by_name(config.list_id)
-    # レコードを取得
-    records = target_list.get_items(expand_fields=True)
-    # pandasに変換
-    records_df = pd.DataFrame([record.fields for record in records])
 
-    return records_df
+    result_dict = dict()
+    for list_id in config.list_ids:
+        # リストを取得
+        target_list = site.get_list_by_name(list_id)
+        # レコードを取得
+        records = target_list.get_items(expand_fields=True)
+        # pandasに変換
+        records_df = pd.DataFrame([record.fields for record in records])
+        # 辞書として保持
+        result_dict[list_id] = records_df
+
+    return result_dict
