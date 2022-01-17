@@ -1,4 +1,5 @@
 import configparser
+import json
 import os
 import errno
 
@@ -53,7 +54,7 @@ class Config():
         return self.__parser.get(section, key)
 
     @property
-    def list_id(self):
+    def list_ids(self):
         section = 'DEFAULT'
-        key = 'list_id'
-        return self.__parser.get(section, key)
+        key = 'list_ids'
+        return json.loads(self.__parser.get(section, key))
